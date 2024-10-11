@@ -44,7 +44,6 @@ def zeri(campo, r, c, mostra, lato):
             if x!=lato+1 and x!=0 and y!=lato+1 and y!=0:
                 mostra[x-1][y-1]=cornice[e]
             
-
             if cornice[e]==0:
                 cornice[e]="-"
                 lista_zeri.append(posizione[e])
@@ -147,6 +146,7 @@ for i in range(lato):
         if sol[i][j]==9:
             sol[i][j]="X"
 
+print("la soluzione era: ")
 stampa(sol)
 
 
