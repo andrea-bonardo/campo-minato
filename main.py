@@ -17,7 +17,7 @@ def stampa(matrice):
     print()
 
 
-def zeri(campo, r, c, mostra):
+def zeri(campo, r, c, mostra, lato):
     cornice=[]
     posizione=[]
 
@@ -31,10 +31,10 @@ def zeri(campo, r, c, mostra):
         continua=False
 
     for i in range(len(cornice)):
-        mostra[posizione[i][0]-1][posizione[i][1]-1]=cornice[i]
-    
-    stampa(mostra)
+        if posizione[i][0]-1<lato and posizione[i][1]-1<lato and posizione[i][1]-1>0 and posizione[i][0]-1>0:
+            mostra[posizione[i][0]-1][posizione[i][1]-1]=cornice[i]
 
+    stampa(mostra)
     lista_zeri=[]
 
     while continua:
@@ -61,6 +61,8 @@ def zeri(campo, r, c, mostra):
             
     for elem in range(len(lista_zeri)):
         mostra[lista_zeri[elem][0]-1][lista_zeri[elem][1]-1]=0
+    
+    print(cornice)
 
     return mostra
 
@@ -71,13 +73,12 @@ for i in range(lato+2):
         if i==0 or j==0 or i==lato+1 or j==lato+1:
             campo[i][j]="x"
 
+
 start = str(input("coordinate (r c): "))
 
 
 r = int(start.split()[0])+1
 c = int(start.split()[1])+1
-
-print(r,c)
 
 lista_bombe=[]
 
@@ -107,7 +108,7 @@ mostra = [['-' for _ in range(lato)] for _ in range(lato)]
 
 mostra[r-1][c-1]=campo[r][c]
 
-mostra=zeri(campo, r, c, mostra)
+mostra=zeri(campo, r, c, mostra, lato)
 
 stampa(mostra)
 
@@ -125,7 +126,7 @@ while gioca:
         print("HAI PERSO")
 
     elif campo[r][c]==0:
-        mostra=zeri(campo, r, c, mostra)
+        mostra=zeri(campo, r, c, mostra, lato)
         stampa(mostra)
 
     else:
